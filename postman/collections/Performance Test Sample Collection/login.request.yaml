@@ -1,0 +1,26 @@
+$kind: http-request
+name: Login
+method: POST
+url: 'http://localhost:3000/api/users/login'
+order: 1000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "email": "your@email.com",
+      "password": "yourpassword"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      const jsonData = pm.response.json();
+      if (jsonData.token) {
+          pm.environment.set("token", jsonData.token);
+          console.log("Token captured and saved to environment");
+      } else {
+          console.log("Login failed or token not found in response");
+      }

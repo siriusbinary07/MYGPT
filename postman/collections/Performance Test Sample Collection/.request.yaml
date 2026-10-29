@@ -1,0 +1,12 @@
+$kind: http-request
+name: ""
+url: http://localhost:3000/api/messages/textmessage
+method: POST
+body:
+  type: json
+  content: '{"chatId": "6acf1afeff13d98842de1f4d", "prompt": "hello"}'
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 1000
